@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img">
+  <rect width="1200" height="630" fill="#12141a"/>
+  <g stroke="#2c3040" stroke-width="1" fill="none">
+    <path d="M640 80h480v470H640z"/>
+    <path d="M640 197h480M640 314h480M640 431h480"/>
+    <path d="M800 80v470M960 80v470"/>
+  </g>
+  <path d="M880 140 L1040 314 L880 488 L720 314 Z" fill="none" stroke="#e2b657" stroke-width="3"/>
+  <path d="M880 140 L880 488 M720 314 L1040 314" stroke="#e2b657" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="880" cy="140" r="7" fill="#e2b657"/>
+  <circle cx="1040" cy="314" r="7" fill="#e2b657"/>
+  <circle cx="880" cy="488" r="7" fill="#e2b657"/>
+  <circle cx="720" cy="314" r="7" fill="#e2b657"/>
+  <text x="72" y="250" fill="#f3efe6" font-family="ui-sans-serif, system-ui, sans-serif" font-size="56" font-weight="700">Kiteframe</text>
+  <text x="72" y="310" fill="#c6c1b6" font-family="ui-monospace, monospace" font-size="22">Fictional product · portfolio demo</text>
+  <text x="72" y="370" fill="#e2b657" font-family="ui-monospace, monospace" font-size="20">CI for motion budgets</text>
+</svg>

@@ -6,22 +6,36 @@ import { TerminalType } from "@/components/terminal-type";
 
 export default function Home() {
   return (
-    <main>
+    <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <header className="border-b border-line">
         <div className="mx-auto flex max-w-6xl items-baseline justify-between px-6 py-5">
           <p className="font-display text-sm tracking-wide">Kiteframe</p>
           <p className="text-xs text-muted">Demo · not for sale</p>
         </div>
       </header>
+      <main id="main-content">
       <Hero />
       <ScrollStory />
       <StatCounter />
       <LogoMarquee />
       <TerminalType />
       <footer className="mx-auto max-w-6xl px-6 py-12 font-mono text-xs text-muted">
-        Kiteframe is a fictional developer tool invented for this public
-        portfolio. No real customers, clients, or private work appear here.
+        <p>
+          Kiteframe is a fictional developer tool invented for this public
+          portfolio. No real customers, clients, or private work appear here.
+        </p>
+        <p className="mt-3">
+          Source:{" "}
+          <a className="text-paper underline" href="https://github.com/landonasbury/motion-budget">
+            github.com/landonasbury/motion-budget
+          </a>
+          . MIT License.
+        </p>
       </footer>
     </main>
+    </>
   );
 }

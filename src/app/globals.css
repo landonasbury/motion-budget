@@ -21,9 +21,21 @@ body {
   color: var(--color-paper);
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+.skip-link {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-120%);
+  background: var(--color-accent);
+  color: var(--color-ink);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  transform: translateY(0.75rem);
 }
 
 #story,

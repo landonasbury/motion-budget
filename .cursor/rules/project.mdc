@@ -36,9 +36,7 @@ Playwright motion lint, reduced-motion, and LoAF tests. LHCI assertions from the
 
 ## Workflow
 
-M0 scaffold → M1 static baseline (no motion) → M2 motion (CSS, then GSAP, then reduced-motion) → M3 gates + demo branch → M4 polish, Vercel, README, MIT LICENSE.
-
-After each milestone: `pnpm build` and tests, report results, **stop for review**. Landon commits. Do not start the next milestone until asked.
+M4 polish is done (MIT LICENSE, metadata/OG, skip-link, README deploy notes). After this milestone: `pnpm build` and tests, stop for review.
 
 M3: assertions fail the build. Branch `demo/layout-animation-regression` is expected to fail CI; do not merge it.
 

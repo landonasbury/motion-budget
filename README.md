@@ -36,7 +36,15 @@ Every push and pull request runs `.github/workflows/ci.yml`:
 4. **Playwright LoAF** — a scripted scroll fails if any `long-animation-frame` exceeds the LoAF rows in [`BUDGETS.md`](./BUDGETS.md).
 5. **Lighthouse CI** — mobile (throttled) and desktop. Assertions are mapped from [`performance-budgets.json`](./performance-budgets.json). Reports upload as artifacts.
 
-The branch [`demo/layout-animation-regression`](https://github.com/landonasbury/motion-budget/tree/demo/layout-animation-regression) adds a `left` animation on purpose. It should stay **red** and must not be merged.
+The branch [`demo/layout-animation-regression`](https://github.com/landonasbury/motion-budget/tree/demo/layout-animation-regression) adds a `left` animation on purpose. [Its CI is expected to fail](https://github.com/landonasbury/motion-budget/actions?query=branch%3Ademo%2Flayout-animation-regression). Do not merge it.
+
+## Deploy
+
+Import [this GitHub repo](https://github.com/landonasbury/motion-budget) in [Vercel](https://vercel.com/new) as a Next.js project. There are no environment variables or secrets. After the first production deploy, set GitHub About to that `*.vercel.app` URL. Do not point Open Graph or docs at `motion-budget.vercel.app` unless it is this project — that host is already in use by an unrelated app.
+
+## License
+
+[MIT](./LICENSE) © 2026 Landon Asbury
 
 ## Scripts
 
