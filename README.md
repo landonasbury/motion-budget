@@ -27,6 +27,17 @@ Requires Node 22+ and [pnpm](https://pnpm.io).
 
 Numbers live in [`performance-budgets.json`](./performance-budgets.json). See [`BUDGETS.md`](./BUDGETS.md) for LoAF thresholds and how they are enforced.
 
+## Results
+
+Lighthouse CI, local run on 2026-09-30, median of 3, simulated throttling (same config CI uses). Lab data, not field data.
+
+| Form factor | Performance | Accessibility | LCP | CLS | TBT |
+| --- | --- | --- | --- | --- | --- |
+| Mobile | 99 | 100 | 2.17s | 0 | 17ms |
+| Desktop | 100 | 100 | 0.50s | 0 | 0ms |
+
+Mobile LCP is 2.17s: over the 2.0s product target, under the 2.5s CI gate. The gate is loosened on purpose because simulated throttling on this Next.js runtime sits just above 2.0s; see [BUDGETS.md](BUDGETS.md). Live-site numbers (PageSpeed Insights, different network and throttling) will differ from these.
+
 ## How the gates work
 
 Every push and pull request runs `.github/workflows/ci.yml`:
