@@ -50,6 +50,16 @@ export function StatCounter() {
     const values = Array.from(
       root.querySelectorAll<HTMLElement>("[data-stat-value]"),
     );
+
+    values.forEach((node, index) => {
+      const stat = stats[index];
+      if (!stat) {
+        return;
+      }
+
+      node.textContent = formatValue(0, stat.digits, stat.suffix);
+    });
+
     let cancelled = false;
     let tweenContext: { revert: () => void } | undefined;
 
@@ -91,7 +101,7 @@ export function StatCounter() {
           }, root);
         });
       },
-      { threshold: 0.4 },
+      { rootMargin: "120px 0px", threshold: 0.15 },
     );
 
     observer.observe(root);
