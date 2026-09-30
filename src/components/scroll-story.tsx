@@ -7,7 +7,7 @@ const beats = [
   {
     kicker: "02 · Diff",
     title: "Budgets live in one file.",
-    body: "LCP, CLS, TBT, and script bytes are numbers a pull request can fail. The story here is static in this milestone; motion comes later.",
+    body: "LCP, CLS, TBT, and script bytes are numbers a pull request can fail. This section uses CSS scroll-driven transform and opacity, not layout.",
   },
   {
     kicker: "03 · Gate",
@@ -25,7 +25,7 @@ export function ScrollStory() {
         </h2>
         <ol className="mt-14 grid gap-12 md:grid-cols-3">
           {beats.map((beat) => (
-            <li key={beat.kicker} className="border-t border-line pt-6">
+            <li key={beat.kicker} className="story-beat border-t border-line pt-6">
               <p className="font-mono text-sm text-accent">{beat.kicker}</p>
               <h3 className="mt-3 font-display text-2xl leading-snug">{beat.title}</h3>
               <p className="mt-4 text-muted">{beat.body}</p>

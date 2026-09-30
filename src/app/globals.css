@@ -25,3 +25,106 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes marquee-shift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-in {
+  animation: fade-up 0.7s ease both;
+}
+
+.hero-in-late {
+  animation: fade-up 0.7s ease 0.12s both;
+}
+
+.story-beat {
+  animation: fade-up linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+.type-char {
+  animation: fade 0.35s ease both;
+  animation-delay: calc(var(--char-index) * 14ms);
+}
+
+.logo-marquee {
+  overflow: hidden;
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-shift 42s linear infinite;
+}
+
+.logo-marquee:hover .logo-marquee-track,
+.logo-marquee:focus-within .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+.logo-static {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .hero-in-late {
+    animation: fade 0.2s ease both;
+  }
+
+  .story-beat,
+  .type-char {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .logo-marquee {
+    display: none;
+  }
+
+  .logo-static {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 2.5rem 0 0;
+    overflow: visible;
+    clip: unset;
+    white-space: normal;
+    display: grid;
+  }
+}
