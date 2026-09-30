@@ -55,6 +55,8 @@ const desktopAssertions = {
     "error",
     { minScore: budgets.lighthousePerformanceDesktop / 100 },
   ],
+  "cumulative-layout-shift": ["error", { maxNumericValue: budgets.cls }],
+  "total-blocking-time": ["error", { maxNumericValue: budgets.tbtMs }],
 };
 
 module.exports = {
