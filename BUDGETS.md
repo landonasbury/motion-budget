@@ -6,8 +6,8 @@ Source of truth: [`performance-budgets.json`](./performance-budgets.json). Lab n
 | --- | --- | --- |
 | LCP (product target) | ≤ 2.0 s | Shown on the page; from `lcpMs` |
 | LCP (CI lab) | ≤ 2.5 s | LHCI mobile `largest-contentful-paint` (`lcpCiMs`) |
-| CLS | ≤ 0.02 | LHCI mobile `cumulative-layout-shift` |
-| TBT | ≤ 150 ms | LHCI mobile `total-blocking-time` |
+| CLS | ≤ 0.02 | LHCI mobile and desktop `cumulative-layout-shift` |
+| TBT | ≤ 150 ms | LHCI mobile and desktop `total-blocking-time` |
 | Initial JS (gzipped) | ≤ 170 KB | LHCI `resource-summary:script:size` |
 | Lighthouse Performance (mobile) | ≥ 95 | LHCI mobile `categories:performance` |
 | Lighthouse Performance (desktop) | ≥ 98 | LHCI desktop `categories:performance` |

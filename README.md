@@ -16,6 +16,7 @@ Requires Node 22+ and [pnpm](https://pnpm.io).
 
 | Metric | Budget |
 | --- | --- |
+| LCP (product target) | ≤ 2.0 s |
 | LCP (CI lab) | ≤ 2.5 s |
 | CLS | ≤ 0.02 |
 | TBT | ≤ 150 ms |

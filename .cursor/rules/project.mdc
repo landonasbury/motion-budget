@@ -28,7 +28,7 @@ Next.js (latest stable, App Router), TypeScript strict, Tailwind, pnpm, GSAP + S
 
 ## Budgets (source of truth: `performance-budgets.json`, mirrored in `BUDGETS.md`)
 
-Mobile emulation, throttled: LCP ≤ 2.0s, CLS ≤ 0.02, TBT ≤ 150ms, initial JS ≤ 170 KB gzipped. Lighthouse Performance ≥ 95 mobile and ≥ 98 desktop. Accessibility = 100.
+Product LCP target is 2.0s (`lcpMs`). CI asserts simulated-throttle LCP at 2.5s (`lcpCiMs`). CLS ≤ 0.02, TBT ≤ 150ms, initial JS ≤ 170 KB gzipped. Lighthouse Performance ≥ 95 mobile and ≥ 98 desktop. Accessibility = 100. See `BUDGETS.md`.
 
 ## Enforcement
 
@@ -36,7 +36,9 @@ Playwright motion lint, reduced-motion, and LoAF tests. LHCI assertions from the
 
 ## Workflow
 
-M4 polish is done (MIT LICENSE, metadata/OG, skip-link, README deploy notes). After this milestone: `pnpm build` and tests, stop for review.
+M5 done: page numbers match the CI gate, count-up no longer flashes, motion tests have positive controls, desktop LHCI asserts CLS and TBT. After this milestone: `pnpm build` and tests, stop for review.
+
+M4 polish is done (MIT LICENSE, metadata/OG, skip-link, README deploy notes).
 
 M3: assertions fail the build. Branch `demo/layout-animation-regression` is expected to fail CI; do not merge it.
 
