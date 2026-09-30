@@ -12,7 +12,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
-    "lhci": "lhci autorun"
+    "lhci": "lhci autorun",
+    "lhci:desktop": "LHCI_FORM_FACTOR=desktop lhci autorun"
   },
   "dependencies": {
     "gsap": "^3.15.0",

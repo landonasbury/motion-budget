@@ -40,7 +40,7 @@ M0 scaffold → M1 static baseline (no motion) → M2 motion (CSS, then GSAP, th
 
 After each milestone: `pnpm build` and tests, report results, **stop for review**. Landon commits. Do not start the next milestone until asked.
 
-M0–M2: run LHCI and upload artifacts; **do not fail CI on scores**. M3: assertions fail the build.
+M3: assertions fail the build. Branch `demo/layout-animation-regression` is expected to fail CI; do not merge it.
 
 Keep it small: no unused deps, small components, no dead code. Explain significant choices in 2–3 sentences. `docs/decisions.md` and `docs/case-study.md` are heading stubs only.
 

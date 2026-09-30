@@ -23,7 +23,7 @@ test("getAnimations() keyframes never animate layout properties", async ({
 
       return keyframes.flatMap((frame, frameIndex) =>
         Object.keys(frame)
-          .filter((key) => key !== "offset" && key !== "easing" && key !== "composite")
+          .filter((key) => key !== "offset" && key !== "computedOffset" && key !== "easing" && key !== "composite")
           .filter((key) => forbidden.has(kebab(key)))
           .map((property) => ({
             animationIndex,

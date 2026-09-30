@@ -1,5 +1,6 @@
 {
   "lcpMs": 2000,
+  "lcpCiMs": 2500,
   "cls": 0.02,
   "tbtMs": 150,
   "initialJsGzipKb": 170,

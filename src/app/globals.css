@@ -26,6 +26,14 @@ body {
   outline-offset: 3px;
 }
 
+#story,
+#budgets,
+#logos,
+#terminal {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 28rem;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -62,8 +70,18 @@ body {
   animation: fade-up 0.7s ease 0.12s both;
 }
 
+@keyframes rise {
+  from {
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .story-beat {
-  animation: fade-up linear both;
+  animation: rise linear both;
   animation-timeline: view();
   animation-range: entry 0% cover 35%;
 }

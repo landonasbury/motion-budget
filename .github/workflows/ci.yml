@@ -45,8 +45,13 @@ jobs:
         env:
           CI: true
 
-      - name: Lighthouse CI (collect only until M3)
+      - name: Lighthouse CI mobile
         run: pnpm lhci
+        env:
+          CI: true
+
+      - name: Lighthouse CI desktop
+        run: pnpm lhci:desktop
         env:
           CI: true
 
@@ -63,5 +68,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lighthouseci
-          path: .lighthouseci
+          path: |
+            .lighthouseci
+            .lighthouseci-desktop
           if-no-files-found: ignore

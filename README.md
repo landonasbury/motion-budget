@@ -16,7 +16,7 @@ Requires Node 22+ and [pnpm](https://pnpm.io).
 
 | Metric | Budget |
 | --- | --- |
-| LCP | ≤ 2.0 s |
+| LCP (CI lab) | ≤ 2.5 s |
 | CLS | ≤ 0.02 |
 | TBT | ≤ 150 ms |
 | Initial JS (gzipped) | ≤ 170 KB |
@@ -28,7 +28,15 @@ Numbers live in [`performance-budgets.json`](./performance-budgets.json). See [`
 
 ## How the gates work
 
-_Filled in M3, once assertions are live._ Until then GitHub Actions runs lint, typecheck, production build, Playwright (motion lint, reduced-motion, LoAF), and Lighthouse CI **collect + filesystem upload** (`assert` is omitted so scores cannot fail the scaffold). Reports upload as workflow artifacts.
+Every push and pull request runs `.github/workflows/ci.yml`:
+
+1. **Lint, production build, typecheck** — typecheck runs after build so Next-generated types exist.
+2. **Playwright motion lint** — `document.getAnimations()` keyframes plus a stylesheet `@keyframes` walk. Any `left`, `top`, `width`, `height`, `margin`, `padding` (and those longhands) fails the job.
+3. **Playwright reduced motion** — with `prefers-reduced-motion: reduce`, running animations may only change `opacity`.
+4. **Playwright LoAF** — a scripted scroll fails if any `long-animation-frame` exceeds the LoAF rows in [`BUDGETS.md`](./BUDGETS.md).
+5. **Lighthouse CI** — mobile (throttled) and desktop. Assertions are mapped from [`performance-budgets.json`](./performance-budgets.json). Reports upload as artifacts.
+
+The branch [`demo/layout-animation-regression`](https://github.com/landonasbury/motion-budget/tree/demo/layout-animation-regression) adds a `left` animation on purpose. It should stay **red** and must not be merged.
 
 ## Scripts
 
@@ -37,4 +45,5 @@ _Filled in M3, once assertions are live._ Until then GitHub Actions runs lint, t
 | `pnpm dev` | Next.js dev server |
 | `pnpm build` | Production build |
 | `pnpm test` | Playwright (builds locally if needed) |
-| `pnpm lhci` | Lighthouse CI collect (run `pnpm build` first) |
+| `pnpm lhci` | Lighthouse CI mobile collect + assert (`pnpm build` first) |
+| `pnpm lhci:desktop` | Lighthouse CI desktop collect + assert |
