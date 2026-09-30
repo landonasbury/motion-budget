@@ -1,0 +1,47 @@
+---
+description: Motion, performance budgets, stack, and milestone workflow for this portfolio repo
+alwaysApply: true
+---
+
+# motion-budget
+
+Public portfolio for Landon: a fictional product launch page plus CI that fails on motion or performance regressions. All copy, logos, and names are invented. No secrets, no real clients, no private-project code.
+
+## Product
+
+**Kiteframe** — fictional “CI for motion” profiler. Label it “Fictional product · portfolio demo.”
+
+## Stack (do not add libraries without asking)
+
+Next.js (latest stable, App Router), TypeScript strict, Tailwind, pnpm, GSAP + ScrollTrigger (sequenced timelines only), Playwright, Lighthouse CI (`@lhci/cli`), ESLint, GitHub Actions, Vercel. Use `next/font` and `next/image`.
+
+## Motion (enforced by tests)
+
+1. Animate only `transform` and `opacity`. Never `left`, `top`, `width`, `height`, `margin`, or `padding` (or those longhands).
+2. `prefers-reduced-motion: reduce` — no continuous or scroll-driven motion; short opacity fades are allowed.
+3. CSS animations and CSS scroll-driven first. GSAP only for sequenced timelines; dynamically import it.
+4. No CLS: images have width/height; hero is preloaded with high fetch priority; fonts `display: "swap"`.
+5. Typing effect = staggered character opacity, never `width`.
+6. Playwright motion lint uses `document.getAnimations()` keyframes **and** a stylesheet `@keyframes` scan (GSAP often skips the WAAPI).
+7. Reduced-motion test: no `playState === "running"` except opacity-only.
+8. Scroll LoAF: fail if any `long-animation-frame` has `blockingDuration > 50` or `duration > 100`.
+
+## Budgets (source of truth: `performance-budgets.json`, mirrored in `BUDGETS.md`)
+
+Mobile emulation, throttled: LCP ≤ 2.0s, CLS ≤ 0.02, TBT ≤ 150ms, initial JS ≤ 170 KB gzipped. Lighthouse Performance ≥ 95 mobile and ≥ 98 desktop. Accessibility = 100.
+
+## Enforcement
+
+Playwright motion lint, reduced-motion, and LoAF tests. LHCI assertions from the JSON. CI on every push and PR. Branch `demo/layout-animation-regression` animates `left` and is expected to fail; do not merge it.
+
+## Workflow
+
+M0 scaffold → M1 static baseline (no motion) → M2 motion (CSS, then GSAP, then reduced-motion) → M3 gates + demo branch → M4 polish, Vercel, README, MIT LICENSE.
+
+After each milestone: `pnpm build` and tests, report results, **stop for review**. Landon commits. Do not start the next milestone until asked.
+
+M0–M2: run LHCI and upload artifacts; **do not fail CI on scores**. M3: assertions fail the build.
+
+Keep it small: no unused deps, small components, no dead code. Explain significant choices in 2–3 sentences. `docs/decisions.md` and `docs/case-study.md` are heading stubs only.
+
+README must include: one-line pitch, `pnpm i && pnpm dev`, budgets table, how the gates work.

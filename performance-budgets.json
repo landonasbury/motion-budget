@@ -1,0 +1,11 @@
+{
+  "lcpMs": 2000,
+  "cls": 0.02,
+  "tbtMs": 150,
+  "initialJsGzipKb": 170,
+  "lighthousePerformanceMobile": 95,
+  "lighthousePerformanceDesktop": 98,
+  "lighthouseAccessibility": 100,
+  "loafBlockingDurationMs": 50,
+  "loafDurationMs": 100
+}
