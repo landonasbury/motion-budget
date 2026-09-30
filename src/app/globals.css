@@ -118,6 +118,25 @@ body {
   border: 0;
 }
 
+@keyframes layout-regression {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 1.5rem;
+  }
+}
+
+.layout-regression {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  animation: layout-regression 2s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-in,
   .hero-in-late,

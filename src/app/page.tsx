@@ -14,6 +14,7 @@ export default function Home() {
         </div>
       </header>
       <Hero />
+      <div className="layout-regression" aria-hidden="true" />
       <ScrollStory />
       <StatCounter />
       <LogoMarquee />
