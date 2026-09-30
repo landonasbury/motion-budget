@@ -7,45 +7,50 @@ const KEYFRAME_META = new Set([
   "composite",
 ]);
 
+function runningAnimationProperties(metaKeys: string[]) {
+  const meta = new Set(metaKeys);
+
+  return document.getAnimations().flatMap((animation) => {
+    if (animation.playState !== "running") {
+      return [];
+    }
+
+    const effect = animation.effect;
+    if (!effect || !("getKeyframes" in effect)) {
+      return [{ animationName: "unknown", properties: ["<unknown>"] }];
+    }
+
+    const keyframes = (effect as KeyframeEffect).getKeyframes();
+    const properties = [
+      ...new Set(
+        keyframes.flatMap((frame) =>
+          Object.keys(frame).filter((key) => !meta.has(key)),
+        ),
+      ),
+    ];
+
+    return [
+      {
+        animationName:
+          "animationName" in animation
+            ? String(animation.animationName)
+            : "anonymous",
+        properties,
+      },
+    ];
+  });
+}
+
 test("reduced motion: running animations are opacity-only", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
-  const running = await page.evaluate((metaKeys) => {
-    const meta = new Set(metaKeys);
-
-    return document.getAnimations().flatMap((animation) => {
-      if (animation.playState !== "running") {
-        return [];
-      }
-
-      const effect = animation.effect;
-      if (!effect || !("getKeyframes" in effect)) {
-        return [{ animationName: "unknown", properties: ["<unknown>"] }];
-      }
-
-      const keyframes = (effect as KeyframeEffect).getKeyframes();
-      const properties = [
-        ...new Set(
-          keyframes.flatMap((frame) =>
-            Object.keys(frame).filter((key) => !meta.has(key)),
-          ),
-        ),
-      ];
-
-      return [
-        {
-          animationName:
-            "animationName" in animation
-              ? String(animation.animationName)
-              : "anonymous",
-          properties,
-        },
-      ];
-    });
-  }, [...KEYFRAME_META]);
+  const running = await page.evaluate(
+    runningAnimationProperties,
+    [...KEYFRAME_META],
+  );
 
   for (const animation of running) {
     expect(
@@ -53,4 +58,25 @@ test("reduced motion: running animations are opacity-only", async ({
       `${animation.animationName} must not run non-opacity properties`,
     ).toEqual([]);
   }
+});
+
+test("without reduced motion: a non-opacity animation is running", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const running = await page.evaluate(
+    runningAnimationProperties,
+    [...KEYFRAME_META],
+  );
+
+  const marquee = running.find(
+    (animation) => animation.animationName === "marquee-shift",
+  );
+
+  expect(
+    marquee,
+    "logo marquee must be running when reduced motion is not set",
+  ).toBeTruthy();
+  expect(marquee?.properties).toContain("transform");
 });
