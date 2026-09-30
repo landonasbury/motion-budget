@@ -38,6 +38,17 @@ Lighthouse CI, local run on 2026-09-30, median of 3, simulated throttling (same 
 
 Mobile LCP is 2.17s: over the 2.0s product target, under the 2.5s CI gate. The gate is loosened on purpose because simulated throttling on this Next.js runtime sits just above 2.0s; see [BUDGETS.md](BUDGETS.md). Live-site numbers (PageSpeed Insights, different network and throttling) will differ from these.
 
+### Live site
+
+PageSpeed Insights, https://kiteframe-demo.vercel.app/, 2026-09-30, single run, Lighthouse 13.5.0. Lab data only; Google reports no field data for this site yet.
+
+| Form factor | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT | Speed Index |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Mobile | 98 | 100 | 100 | 100 | 1.8s | 0 | 20ms | 4.0s |
+| Desktop | 100 | 100 | 100 | 100 | 0.5s | 0 | 40ms | 0.4s |
+
+PSI and the CI gate use different network and CPU throttling, so their LCP values differ (1.8s live vs 2.17s in CI). Speed Index is not a budgeted metric; mobile Speed Index is 4.0s.
+
 ## How the gates work
 
 Every push and pull request runs `.github/workflows/ci.yml`:
