@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { performanceBudgets } from "@/lib/budgets";
+
+const lcpTarget = `${(performanceBudgets.lcpMs / 1000).toFixed(1)}s`;
+const clsCeiling = performanceBudgets.cls.toFixed(2);
+const tbtCeiling = `${performanceBudgets.tbtMs}ms`;
 
 const report = `kiteframe 0.0.0-demo (fictional)
 
@@ -10,7 +15,7 @@ $ kiteframe check src/app
   pass   opacity       6 fades
   fail   left          HeroCta  (layout)
 
-  budgets  LCP 2.0s  CLS 0.02  TBT 150ms
+  budgets  LCP ${lcpTarget}  CLS ${clsCeiling}  TBT ${tbtCeiling}
   result   1 failed  ·  not a real product`;
 
 export function TerminalType() {

@@ -5,7 +5,13 @@ import { performanceBudgets } from "@/lib/budgets";
 
 const stats = [
   {
-    label: "LCP ceiling",
+    label: "LCP gate (CI, simulated)",
+    to: performanceBudgets.lcpCiMs / 1000,
+    digits: 1,
+    suffix: "s",
+  },
+  {
+    label: "LCP target",
     to: performanceBudgets.lcpMs / 1000,
     digits: 1,
     suffix: "s",
@@ -104,12 +110,13 @@ export function StatCounter() {
           Numbers the gate will keep
         </h2>
         <p className="mt-4 max-w-xl text-muted">
-          Figures match{" "}
+          Figures come from{" "}
           <span className="font-mono text-paper">performance-budgets.json</span>
-          . The count-up is a GSAP timeline loaded only when this block is in
-          view.
+          . The CI LCP gate is simulated-throttle; the product target is
+          stricter. Count-up is a GSAP timeline loaded only when this block is
+          in view.
         </p>
-        <dl className="mt-12 grid gap-8 md:grid-cols-3">
+        <dl className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="story-beat border border-line bg-panel p-8">
               <dt className="font-mono text-sm text-muted">{stat.label}</dt>
