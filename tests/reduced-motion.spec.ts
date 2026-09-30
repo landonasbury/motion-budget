@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-const KEYFRAME_META = new Set(["offset", "easing", "composite"]);
+const KEYFRAME_META = new Set([
+  "offset",
+  "computedOffset",
+  "easing",
+  "composite",
+]);
 
 test("reduced motion: running animations are opacity-only", async ({
   page,
@@ -18,7 +23,7 @@ test("reduced motion: running animations are opacity-only", async ({
 
       const effect = animation.effect;
       if (!effect || !("getKeyframes" in effect)) {
-        return [{ properties: ["<unknown>"] }];
+        return [{ animationName: "unknown", properties: ["<unknown>"] }];
       }
 
       const keyframes = (effect as KeyframeEffect).getKeyframes();
@@ -30,13 +35,22 @@ test("reduced motion: running animations are opacity-only", async ({
         ),
       ];
 
-      return [{ properties }];
+      return [
+        {
+          animationName:
+            "animationName" in animation
+              ? String(animation.animationName)
+              : "anonymous",
+          properties,
+        },
+      ];
     });
   }, [...KEYFRAME_META]);
 
   for (const animation of running) {
-    expect(animation.properties.every((property) => property === "opacity")).toBe(
-      true,
-    );
+    expect(
+      animation.properties.filter((property) => property !== "opacity"),
+      `${animation.animationName} must not run non-opacity properties`,
+    ).toEqual([]);
   }
 });

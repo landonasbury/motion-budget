@@ -102,13 +102,12 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-in,
-  .hero-in-late {
-    animation: fade 0.2s ease both;
-  }
-
+  .hero-in-late,
   .story-beat,
-  .type-char {
+  .type-char,
+  .logo-marquee-track {
     animation: none;
+    animation-timeline: none;
     opacity: 1;
     transform: none;
   }
