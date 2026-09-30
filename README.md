@@ -2,6 +2,10 @@
 
 A motion-rich launch page for the fictional product **Kiteframe**, with CI that fails when performance or motion rules break.
 
+**Live demo:** https://kiteframe-demo.vercel.app/
+
+**Design decisions and trade-offs:** [docs/decisions.md](docs/decisions.md)
+
 ## Run
 
 ```bash
@@ -63,7 +67,7 @@ The branch [`demo/layout-animation-regression`](https://github.com/landonasbury/
 
 ## Deploy
 
-Import [this GitHub repo](https://github.com/landonasbury/motion-budget) in [Vercel](https://vercel.com/new) as a Next.js project. There are no environment variables or secrets. After the first production deploy, set GitHub About to that `*.vercel.app` URL. Do not point Open Graph or docs at `motion-budget.vercel.app` unless it is this project — that host is already in use by an unrelated app.
+Deployed on Vercel at https://kiteframe-demo.vercel.app/ as a Next.js project, with no environment variables or secrets. The Vercel project is named `kiteframe-demo` because `motion-budget.vercel.app` belongs to an unrelated app.
 
 ## License
 
